@@ -1,5 +1,5 @@
 package com.gamewerks.blocky;
-
+//This is a test comment
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
