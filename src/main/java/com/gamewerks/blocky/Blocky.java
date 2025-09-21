@@ -11,6 +11,14 @@ import com.gamewerks.blocky.engine.BlockyGame;
 import com.gamewerks.blocky.engine.Direction;
 import com.gamewerks.blocky.gfx.BlockyPanel;
 
+
+/**
+ * this is the Blocky class.
+ * It is the main tester for this project
+ * 
+ * 
+ * 
+ */
 public class Blocky {
     private static final int FPS = 10;
     private static final double SPF = 1000000000.0 / FPS;
