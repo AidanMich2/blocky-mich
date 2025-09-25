@@ -22,6 +22,7 @@ public class BlockyGame {
     private void trySpawnBlock() {
         if (activePiece == null) {
             activePiece = new Piece(PieceKind.I, new Position(2, Constants.BOARD_WIDTH / 2 - 2));
+            
             if (board.collides(activePiece)) {
                 System.exit(0);
             }
@@ -39,6 +40,7 @@ public class BlockyGame {
             break;
         case RIGHT:
             nextPos = activePiece.getPosition().add(0, 1);
+            break;
         default:
             throw new IllegalStateException("Unrecognized direction: " + movement.name());
         }
@@ -69,8 +71,12 @@ public class BlockyGame {
     }
     
     public void step() {
+ 
         trySpawnBlock();
+        //Process movement was never called
+        processMovement();
         processGravity();
+
         processClearedLines();
     }
     

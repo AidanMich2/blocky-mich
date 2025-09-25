@@ -14,9 +14,12 @@ public class Board {
     }
     
     public boolean isValidPosition(int row, int col) {
-        return row >= 0 && row <= well.length && col >= 0 && col <= well[0].length;
+        //Changing well.length to well.length-4 makes it stop at the bottom
+        return row >= 0 && row < well.length && col >= 0 && col < well[0].length;
     }
     
+    //Takes in a piece object and then sends it to the other collides function
+    // Returns true if 
     public boolean collides(Piece p) {
         return collides(p.getLayout(), p.getPosition());
     }
@@ -53,14 +56,15 @@ public class Board {
     }
     
     public void deleteRow(int n) {
-        for (int row = 0; row < n - 1; row++) {
-            for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-                well[row][col] = well[row+1][col];
-            }
-        }
         for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
             well[n][col] = false;
         }
+        for (int row = n; row > 0; row--) {
+            for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
+                well[row][col] = well[row - 1][col];
+            }
+        }
+
     }
     
     public void deleteRows(List rows) {
@@ -79,10 +83,12 @@ public class Board {
     }
     
     public List getCompletedRows() {
-        List completedRows = new LinkedList();
+        List<Integer> completedRows = new LinkedList();
         for (int row = 0; row < Constants.BOARD_HEIGHT; row++) {
+            System.out.println(isCompletedRow(row));
             if (isCompletedRow(row)) {
-                completedRows.add(well[row]);
+                System.out.print(well[row]);
+                completedRows.add(row);
             }
         }
         return completedRows;
